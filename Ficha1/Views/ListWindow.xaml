@@ -1,0 +1,23 @@
+﻿<Window x:Class="Ficha1.Views.ListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:Ficha1.ViewModels"
+        mc:Ignorable="d"
+        Title="ListWindow" SizeToContent="WidthAndHeight">
+    <Window.DataContext>
+        <vm:ListWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <ListView Margin="10 10 10 10" ItemsSource="{Binding Students}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Número" Width="100" DisplayMemberBinding="{Binding Number}" />
+                    <GridViewColumn Header="Nome" Width="200" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Email" Width="200" DisplayMemberBinding="{Binding Email}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
