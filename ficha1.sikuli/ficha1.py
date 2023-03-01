@@ -1,4 +1,4 @@
-click("1677612345563.png")
+click("name_input.png")
 
 name = input("Nome: ")
 
@@ -16,4 +16,4 @@ email = input("Email: ")
 
 type(email)
 
-click("1677612401209.png")
+click("add_button.png")
