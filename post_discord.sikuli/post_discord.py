@@ -1,8 +1,6 @@
-from sikuli import *
+click("discord_icon.png")
 
-click("1677613712413.png")
-
-click("1677613728007.png")
+click("channel.png")
 
 s = input()
 
