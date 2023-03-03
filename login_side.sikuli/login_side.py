@@ -1,10 +1,13 @@
-type("S" + Key.WIN)
+type(Key.WIN)
+wait(0.5)
 
-sleep(1.5)
+type("side.utad.pt" + Key.ENTER)
+wait(0.5)
 
-type("side.utad.pt")
+click("login_bt.png")
+wait(1.5)
 
-type(Key.ENTER)
+type("al70633" + Key.TAB)
 
 click("login.png")
 sleep(0.5)
