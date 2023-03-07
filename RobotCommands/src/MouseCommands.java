@@ -1,8 +1,38 @@
 import java.awt.*;
 import java.awt.event.InputEvent;
 
+/**
+ * <p>
+ * This class contains methods for controlling the mouse
+ * (e.g. left click, right click, move, etc.)
+ * <p>
+ * <b>NOTE:</b> This class requires the Java Robot class
+ * <p>
+ * <b>Example:</b>
+ * <pre>
+ *         Robot robot = new Robot();
+ *         MouseCommands.clickAt(robot, 100, 200);
+ *         MouseCommands.rightClick(robot);
+ *         MouseCommands.move(robot, 100, 200);
+ *         MouseCommands.scroll(robot, 10);
+ * </pre>
+ * <p>
+ */
 @SuppressWarnings("unused")
 public class MouseCommands {
+    /**
+     * Gets the current mouse position (x, y) in pixels
+     *
+     * @return Position object containing the current mouse position
+     */
+    public static Position getLocation() {
+        PointerInfo pointer = MouseInfo.getPointerInfo();
+        Point point = pointer.getLocation();
+        int x = (int) point.getX();
+        int y = (int) point.getY();
+        return new Position(x, y);
+    }
+
     /**
      * Left clicks at the specified coordinates (x, y) (e.g. 100, 200)
      *
@@ -42,17 +72,6 @@ public class MouseCommands {
     }
 
     /**
-     * Gets the current mouse position
-     */
-    public static void getLocation() {
-        PointerInfo pointer = MouseInfo.getPointerInfo();
-        Point point = pointer.getLocation();
-        int x = (int) point.getX();
-        int y = (int) point.getY();
-        System.out.println(x + "," + y);
-    }
-
-    /**
      * Double-clicks at the current mouse position
      *
      * @param robot Robot
@@ -70,5 +89,14 @@ public class MouseCommands {
     public static void rightClick(Robot robot) {
         robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
         robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
+    }
+
+    /**
+     * Mouse pointer position (x, y)
+     *
+     * @param x X coordinate
+     * @param y Y coordinate
+     */
+    private record Position(int x, int y) {
     }
 }
