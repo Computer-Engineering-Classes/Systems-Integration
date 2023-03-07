@@ -16,3 +16,21 @@
 - wait() - wait for a second
 - wait(2) - wait for 2 seconds
 - sleep(2.5) - sleep for 2.5 seconds
+
+# Robot Notes
+
+## Mouse
+
+- mouseMove(x, y) - move mouse to x, y
+- mousePress(Keycode.VK_A) - press A
+- mouseRelease(Keycode.VK_A) - release A
+- mouseWheel(1) - scroll up
+
+## Keyboard
+
+- keyPress(Keycode.VK_A) - press A
+- keyRelease(Keycode.VK_A) - release A
+
+## Control
+
+- delay(1000) - delay for 1 second
