@@ -16,6 +16,11 @@ public class Main {
         }
     }
 
+    /**
+     * Opens Notepad and writes "Hello world!"
+     *
+     * @param robot Robot
+     */
     public static void openAndWriteInNotepad(Robot robot) {
         // Open search bar
         KeyboardCommands.pressKey(robot, KeyEvent.VK_WINDOWS);
@@ -28,6 +33,11 @@ public class Main {
         KeyboardCommands.typeString(robot, "Hello world!");
     }
 
+    /**
+     * Fills in a form with the specified data
+     *
+     * @param robot Robot
+     */
     public static void fillInForm(Robot robot) {
         // Click on the form
         MouseCommands.clickAt(robot, 50, 100);
@@ -44,6 +54,11 @@ public class Main {
         KeyboardCommands.pressKey(robot, KeyEvent.VK_ENTER);
     }
 
+    /**
+     * Logs in to SIDE with the specified credentials
+     *
+     * @param robot Robot
+     */
     public static void loginToSIDE(Robot robot) {
         // Open search bar
         KeyboardCommands.pressKey(robot, KeyEvent.VK_WINDOWS);
@@ -62,6 +77,11 @@ public class Main {
         KeyboardCommands.pressKey(robot, KeyEvent.VK_ENTER);
     }
 
+    /**
+     * Posts a message on Discord with the specified text
+     *
+     * @param robot Robot
+     */
     public static void postOnDiscord(Robot robot) {
         // Open search bar
         KeyboardCommands.pressKey(robot, KeyEvent.VK_WINDOWS);

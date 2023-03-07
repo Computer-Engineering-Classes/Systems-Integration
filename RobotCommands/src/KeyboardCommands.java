@@ -1,6 +1,24 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * <p>
+ * This class contains methods for controlling the keyboard
+ * (e.g. press key, type string, etc.)
+ * <p>
+ * <b>NOTE:</b> This class requires the Java Robot class
+ * <p>
+ * <b>Example:</b>
+ * <pre>
+ *     Robot robot = new Robot();
+ *     KeyboardCommands.typeString(robot, "Hello World!");
+ *     KeyboardCommands.selectAll(robot);
+ *     KeyboardCommands.copy(robot);
+ *     KeyboardCommands.pressKey(robot, KeyEvent.VK_ENTER);
+ *     KeyboardCommands.paste(robot);
+ *     KeyboardCommands.save(robot);
+ * </pre>
+ */
 @SuppressWarnings("unused")
 public class KeyboardCommands {
     /**
