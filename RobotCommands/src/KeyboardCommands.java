@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.Map;
 
 /**
  * <p>
@@ -21,6 +22,35 @@ import java.awt.event.KeyEvent;
  */
 @SuppressWarnings("unused")
 public class KeyboardCommands {
+    private static final Map<Character, Integer> altGrKeyMap = Map.ofEntries(
+            Map.entry('@', KeyEvent.VK_2),
+            Map.entry('£', KeyEvent.VK_3),
+            Map.entry('§', KeyEvent.VK_4),
+            Map.entry('{', KeyEvent.VK_7),
+            Map.entry('[', KeyEvent.VK_8),
+            Map.entry(']', KeyEvent.VK_9),
+            Map.entry('}', KeyEvent.VK_0)
+    );
+
+    private static final Map<Character, Integer> shiftKeyMap = Map.ofEntries(
+            Map.entry('|', KeyEvent.VK_BACK_SLASH),
+            Map.entry('!', KeyEvent.VK_1),
+            Map.entry('"', KeyEvent.VK_2),
+            Map.entry('#', KeyEvent.VK_3),
+            Map.entry('$', KeyEvent.VK_4),
+            Map.entry('%', KeyEvent.VK_5),
+            Map.entry('&', KeyEvent.VK_6),
+            Map.entry('/', KeyEvent.VK_7),
+            Map.entry('(', KeyEvent.VK_8),
+            Map.entry(')', KeyEvent.VK_9),
+            Map.entry('=', KeyEvent.VK_0),
+            Map.entry('?', KeyEvent.VK_QUOTE),
+            Map.entry('^', KeyEvent.VK_DEAD_TILDE),
+            Map.entry(';', KeyEvent.VK_COMMA),
+            Map.entry(':', KeyEvent.VK_PERIOD),
+            Map.entry('_', KeyEvent.VK_MINUS)
+    );
+
     /**
      * Presses the specified key and releases it
      *
@@ -113,11 +143,9 @@ public class KeyboardCommands {
      * @param c     Character to type
      */
     public static void typeCharacter(Robot robot, char c) {
-        String altGrChars = "@£§{[]}";
-        String shiftChars = "|!\"#$%&/()=?»*`ª;:_>";
-        if (shiftChars.contains(String.valueOf(c)) || Character.isUpperCase(c)) {
+        if (shiftKeyMap.containsKey(c) || Character.isUpperCase(c)) {
             typeShiftCharacter(robot, c);
-        } else if (altGrChars.contains(String.valueOf(c))) {
+        } else if (altGrKeyMap.containsKey(c)) {
             typeAltGrCharacter(robot, c);
         } else {
             typeStandardCharacter(robot, c);
@@ -132,15 +160,8 @@ public class KeyboardCommands {
      */
     private static void typeAltGrCharacter(Robot robot, char c) {
         robot.keyPress(KeyEvent.VK_ALT_GRAPH);
-        switch (c) {
-            case '@' -> pressKey(robot, KeyEvent.VK_2);
-            case '£' -> pressKey(robot, KeyEvent.VK_3);
-            case '§' -> pressKey(robot, KeyEvent.VK_5);
-            case '{' -> pressKey(robot, KeyEvent.VK_7);
-            case '[' -> pressKey(robot, KeyEvent.VK_8);
-            case ']' -> pressKey(robot, KeyEvent.VK_9);
-            case '}' -> pressKey(robot, KeyEvent.VK_0);
-        }
+        int keyCode = altGrKeyMap.getOrDefault(c, KeyEvent.VK_UNDEFINED);
+        pressKey(robot, keyCode);
         robot.keyRelease(KeyEvent.VK_ALT_GRAPH);
     }
 
@@ -167,23 +188,8 @@ public class KeyboardCommands {
     private static void typeShiftCharacter(Robot robot, char c) {
         robot.keyPress(KeyEvent.VK_SHIFT);
         if (Character.isUpperCase(c)) typeStandardCharacter(robot, c);
-        else switch (c) {
-            case '|' -> pressKey(robot, KeyEvent.VK_BACK_SLASH);
-            case '!' -> pressKey(robot, KeyEvent.VK_1);
-            case '"' -> pressKey(robot, KeyEvent.VK_2);
-            case '#' -> pressKey(robot, KeyEvent.VK_3);
-            case '$' -> pressKey(robot, KeyEvent.VK_4);
-            case '%' -> pressKey(robot, KeyEvent.VK_5);
-            case '&' -> pressKey(robot, KeyEvent.VK_6);
-            case '/' -> pressKey(robot, KeyEvent.VK_7);
-            case '(' -> pressKey(robot, KeyEvent.VK_8);
-            case ')' -> pressKey(robot, KeyEvent.VK_9);
-            case '=' -> pressKey(robot, KeyEvent.VK_0);
-            case '?' -> pressKey(robot, KeyEvent.VK_QUOTE);
-            case '_' -> pressKey(robot, KeyEvent.VK_MINUS);
-            case ':' -> pressKey(robot, KeyEvent.VK_PERIOD);
-            case '^' -> pressKey(robot, KeyEvent.VK_DEAD_TILDE);
-        }
+        int keyCode = shiftKeyMap.getOrDefault(c, KeyEvent.VK_UNDEFINED);
+        pressKey(robot, keyCode);
         robot.keyRelease(KeyEvent.VK_SHIFT);
         if (c == '^') {
             pressKey(robot, KeyEvent.VK_SPACE);
