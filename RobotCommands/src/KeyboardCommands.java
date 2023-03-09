@@ -13,11 +13,9 @@ import java.util.Map;
  * <pre>
  *     Robot robot = new Robot();
  *     KeyboardCommands.typeString(robot, "Hello World!");
- *     KeyboardCommands.selectAll(robot);
  *     KeyboardCommands.copy(robot);
  *     KeyboardCommands.pressKey(robot, KeyEvent.VK_ENTER);
  *     KeyboardCommands.paste(robot);
- *     KeyboardCommands.save(robot);
  * </pre>
  */
 @SuppressWarnings("unused")
@@ -187,9 +185,12 @@ public class KeyboardCommands {
      */
     private static void typeShiftCharacter(Robot robot, char c) {
         robot.keyPress(KeyEvent.VK_SHIFT);
-        if (Character.isUpperCase(c)) typeStandardCharacter(robot, c);
-        int keyCode = shiftKeyMap.getOrDefault(c, KeyEvent.VK_UNDEFINED);
-        pressKey(robot, keyCode);
+        if (Character.isUpperCase(c)) {
+            typeStandardCharacter(robot, c);
+        } else {
+            int keyCode = shiftKeyMap.getOrDefault(c, KeyEvent.VK_UNDEFINED);
+            pressKey(robot, keyCode);
+        }
         robot.keyRelease(KeyEvent.VK_SHIFT);
         if (c == '^') {
             pressKey(robot, KeyEvent.VK_SPACE);

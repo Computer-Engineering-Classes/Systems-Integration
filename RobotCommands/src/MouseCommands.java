@@ -98,5 +98,9 @@ public class MouseCommands {
      * @param y Y coordinate
      */
     private record Position(int x, int y) {
+        @Override
+        public String toString() {
+            return "(" + x + ", " + y + ")";
+        }
     }
 }
