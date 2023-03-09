@@ -1,6 +1,5 @@
 type(Key.WIN)
 wait(0.5)
-
 type("side.utad.pt" + Key.ENTER)
 wait(0.5)
 
