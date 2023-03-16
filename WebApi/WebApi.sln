@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountriesApiConsole", "CountriesApiConsole\CountriesApiConsole.csproj", "{80CFD9F4-B887-4F4F-BD17-1C21CC5AD8F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentsApiConsole", "StudentsApiConsole\StudentsApiConsole.csproj", "{B8C81374-E627-420E-B9D6-4876900BE174}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80CFD9F4-B887-4F4F-BD17-1C21CC5AD8F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80CFD9F4-B887-4F4F-BD17-1C21CC5AD8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80CFD9F4-B887-4F4F-BD17-1C21CC5AD8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80CFD9F4-B887-4F4F-BD17-1C21CC5AD8F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8C81374-E627-420E-B9D6-4876900BE174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8C81374-E627-420E-B9D6-4876900BE174}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8C81374-E627-420E-B9D6-4876900BE174}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8C81374-E627-420E-B9D6-4876900BE174}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
