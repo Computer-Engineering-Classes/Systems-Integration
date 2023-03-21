@@ -19,13 +19,9 @@ while (true)
             var name = Console.ReadLine();
             var country = CountriesApi.GetCountry(name);
             if (country == null)
-            {
                 Console.WriteLine("Country not found");
-            }
             else
-            {
                 Console.WriteLine("Population: " + country["population"]);
-            }
             break;
         case "3":
             return;

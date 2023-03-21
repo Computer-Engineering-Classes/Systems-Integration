@@ -2,22 +2,15 @@
 
 public class Livro
 {
-    public int Id { get; set; }
-    
-    public string Titulo { get; set; } = string.Empty;
-    
-    public string Autor { get; set; } = string.Empty;
-    
-    public string Editor { get; set; } = string.Empty;
-    
-    public DateTime DataCompra { get; set; }
-    
-    public bool Estado { get; set; }
+    public int Id { get; init; }
 
-    public override string ToString()
-    {
-        return $"Id: {Id}, Titulo: {Titulo}, " +
-               $"Autor: {Autor}, Editor: {Editor}, " +
-               $"DataCompra: {DataCompra}, Estado: {Estado}";
-    }
+    public string Titulo { get; init; } = string.Empty;
+
+    public string Autor { get; init; } = string.Empty;
+
+    public string Editor { get; init; } = string.Empty;
+
+    public bool Estado { get; init; }
+
+    public DateOnly DataCompra { get; init; }
 }
