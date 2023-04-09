@@ -1,4 +1,4 @@
-﻿namespace Ficha4;
+﻿namespace Ficha4.Models;
 
 public class Livro
 {

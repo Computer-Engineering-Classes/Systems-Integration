@@ -1,9 +1,10 @@
 ﻿using System.Data;
+using Ficha4.Models;
 using Microsoft.Data.SqlClient;
 
-namespace Ficha4;
+namespace Ficha4.Data;
 
-public static class LivrosDbContext
+public static partial class LivrosDbContext
 {
     private const string ConnectionString =
         "Server=localhost;Database=Livros;Trusted_Connection=True;TrustServerCertificate=True;";
@@ -53,17 +54,16 @@ public static class LivrosDbContext
         command.ExecuteNonQuery();
     }
 
-    public static void UpdateLivro(int id, bool estado)
+    public static void DevolverLivro(int id)
     {
         using var connection = new SqlConnection(ConnectionString);
         using var command = new SqlCommand
         {
-            CommandText = "UpdateLivro @Id, @Estado",
+            CommandText = "DevolverLivro @Id",
             CommandType = CommandType.Text,
             Connection = connection
         };
         command.Parameters.AddWithValue("@Id", id);
-        command.Parameters.AddWithValue("@Estado", estado);
         connection.Open();
         command.ExecuteNonQuery();
     }
