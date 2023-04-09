@@ -1,0 +1,21 @@
+﻿CREATE DATABASE AlunosDb;
+GO
+
+USE AlunosDb;
+
+CREATE TABLE Alunos (
+    Numero INT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Curso VARCHAR(100) NOT NULL,
+);
+
+CREATE DATABASE StudentsDb;
+GO
+
+USE StudentsDb;
+
+CREATE TABLE Students (
+    Number INT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Course VARCHAR(100) NOT NULL,
+);

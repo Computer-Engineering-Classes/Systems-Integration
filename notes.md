@@ -54,3 +54,22 @@
 ### DELETE
 
 - curl -X DELETE http://localhost:8080/api/v1/notes/1
+
+## DBMS Notes
+
+### DB Creation
+
+- CREATE DATABASE Livros;
+
+### Table Creation
+
+- CREATE TABLE Livros (. . .);
+
+### Stored Procedure Creation
+```sql
+CREATE PROCEDURE InsertLivro (@titulo varchar(50), @autor varchar(50), @editora varchar(50), @ano int) AS 
+    BEGIN 
+        INSERT INTO Livros (Titulo, Autor, Editora, Ano) 
+        VALUES (@titulo, @autor, @editora, @ano) 
+    END
+```

@@ -1,4 +1,7 @@
-namespace Ficha4;
+using Ficha4.Data;
+using Ficha4.Models;
+
+namespace Ficha4.Managers;
 
 public static class LivrosManager
 {
@@ -31,15 +34,6 @@ public static class LivrosManager
         Console.WriteLine("Livro criado com sucesso!");
     }
 
-    public static void UpdateLivro()
-    {
-        Console.Write("Id do livro: ");
-        if (!int.TryParse(Console.ReadLine(), out var id)) return;
-        Console.Write("Estado (true/false): ");
-        if (!bool.TryParse(Console.ReadLine(), out var estado)) return;
-        LivrosDbContext.UpdateLivro(id, estado);
-    }
-
     public static void DeleteLivro()
     {
         Console.Write("Id do livro: ");
@@ -60,5 +54,21 @@ public static class LivrosManager
             Console.WriteLine("Emprestado? " + (livro.Estado ? "Sim" : "Não"));
             Console.WriteLine();
         }
+    }
+
+    public static void RequisitarLivro()
+    {
+        Console.Write("Id do aluno: ");
+        if (!int.TryParse(Console.ReadLine(), out var idAluno)) return;
+        Console.Write("Id do livro: ");
+        if (!int.TryParse(Console.ReadLine(), out var idLivro)) return;
+        LivrosDbContext.RequisitarLivro(idAluno, idLivro);
+    }
+
+    public static void DevolverLivro()
+    {
+        Console.Write("Id do livro: ");
+        if (!int.TryParse(Console.ReadLine(), out var idLivro)) return;
+        LivrosDbContext.DevolverLivro(idLivro);
     }
 }
