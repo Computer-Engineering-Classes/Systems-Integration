@@ -1,0 +1,16 @@
+﻿CREATE DATABASE AlunosDB;
+GO
+
+USE AlunosDB;
+GO
+
+CREATE TABLE Alunos_2019
+(
+    MT12019_ID         INT IDENTITY (1,1) NOT NULL,
+    MT12019_Name       VARCHAR(255)       NOT NULL,
+    MT12019_Data       VARCHAR(255)       NOT NULL,
+    MT12019_MediaAluno FLOAT,
+    PRIMARY KEY (MT12019_ID)
+);
+
+DROP TABLE Alunos_2019;

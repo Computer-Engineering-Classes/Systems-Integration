@@ -1,0 +1,13 @@
+# Neste exemplo irei usar o Sapo Mail
+click("1681078710064.png")
+wait(0.1)
+end_destino = input("Endereco de destino:")
+type(end_destino + Key.TAB)
+wait(0.1)
+assunto = input("Assunto:")
+type(assunto + Key.TAB + Key.TAB)
+wait(0.1)
+corpo = input("Corpo da mensagem:")
+type(corpo)
+wait(0.1)
+click("1681078968489.png")
