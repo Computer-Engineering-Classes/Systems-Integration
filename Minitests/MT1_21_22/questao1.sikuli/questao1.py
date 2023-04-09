@@ -11,16 +11,12 @@ if s in ["notepad", "wordpad"]:
         type("Com o Wordpad consigo formatar o texto!")
     
     wait(0.3)
-    keyDown(Key.CTRL)
-    type("g")
-    keyUp(Key.CTRL)
+    type("g", Key.CTRL)
     
     wait(0.3)
     type("Ficheiro+" + s)
     type(Key.ENTER)    
     
     wait(0.5)
-    keyDown(Key.ALT)
-    type(Key.F4)
-    keyUp(Key.ALT)
+    type(Key.F4, Key.ALT)
     
