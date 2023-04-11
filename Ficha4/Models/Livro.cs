@@ -12,5 +12,5 @@ public class Livro
 
     public bool Estado { get; init; }
 
-    public DateOnly DataCompra { get; init; }
+    public DateTime DataCompra { get; init; }
 }

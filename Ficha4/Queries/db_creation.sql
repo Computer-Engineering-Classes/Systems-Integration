@@ -1,6 +1,4 @@
-﻿-- noinspection SpellCheckingInspectionForFile
-
-CREATE DATABASE Livros;
+﻿CREATE DATABASE Livros;
 
 USE Livros;
 GO;
@@ -11,7 +9,7 @@ CREATE TABLE Livro
     Titulo     NVARCHAR(MAX) NOT NULL,
     Autor      NVARCHAR(MAX) NOT NULL,
     Editor     NVARCHAR(MAX) NOT NULL,
-    DataCompra DATE          NOT NULL,
+    DataCompra DATETIME2     NOT NULL,
     Estado     BIT           NOT NULL,
     PRIMARY KEY (Id)
 );
@@ -27,10 +25,10 @@ CREATE TABLE Aluno
 
 CREATE TABLE Emprestimo
 (
-    LivroId        INTEGER NOT NULL,
-    AlunoId        INTEGER NOT NULL,
-    DataRequisicao DATE    NOT NULL,
-    DataEntrega    DATE,
+    LivroId        INTEGER   NOT NULL,
+    AlunoId        INTEGER   NOT NULL,
+    DataRequisicao DATETIME2 NOT NULL,
+    DataEntrega    DATETIME2,
     PRIMARY KEY (LivroId, AlunoId, DataRequisicao),
     FOREIGN KEY (LivroId) REFERENCES Livro (Id),
     FOREIGN KEY (AlunoId) REFERENCES Aluno (Id)

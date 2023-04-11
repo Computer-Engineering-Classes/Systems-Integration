@@ -1,16 +1,48 @@
-using Ficha4.Data;
+using System.Data;
 using Ficha4.Models;
+using Microsoft.Data.SqlClient;
 
 namespace Ficha4.Managers;
 
 public static class LivrosManager
 {
-    public static IEnumerable<Livro> GetLivros()
+    private const string ConnectionString =
+        "Server=localhost;Database=Livros;Trusted_Connection=True;TrustServerCertificate=True;";
+
+    public static void GetLivros()
     {
         Console.Write("Id do livro (0 caso queira selecionar todos): ");
-        return !int.TryParse(Console.ReadLine(), out var id)
-            ? Enumerable.Empty<Livro>()
-            : LivrosDbContext.GetLivros(id);
+        if (!int.TryParse(Console.ReadLine(), out var id)) return;
+        using var connection = new SqlConnection(ConnectionString);
+        using var command = new SqlCommand
+        {
+            CommandText = "GetLivros @Id",
+            CommandType = CommandType.Text,
+            Connection = connection
+        };
+        command.Parameters.AddWithValue("@Id", id);
+        connection.Open();
+        var reader = command.ExecuteReader();
+        if (!reader.HasRows) return;
+        while (reader.Read())
+        {
+            var livro = new Livro
+            {
+                Id = (int)reader["Id"],
+                Titulo = (string)reader["Titulo"],
+                Autor = (string)reader["Autor"],
+                Editor = (string)reader["Editor"],
+                Estado = (bool)reader["Estado"],
+                DataCompra = (DateTime)reader["DataCompra"]
+            };
+            Console.WriteLine("Id: " + livro.Id);
+            Console.WriteLine("Titulo: " + livro.Titulo);
+            Console.WriteLine("Autor: " + livro.Autor);
+            Console.WriteLine("Editor: " + livro.Editor);
+            Console.WriteLine("Estado: " + livro.Estado);
+            Console.WriteLine("Data de compra: " + livro.DataCompra);
+            Console.WriteLine();
+        }
     }
 
     public static void AddLivro()
@@ -24,13 +56,18 @@ public static class LivrosManager
         Console.Write("Editor do livro: ");
         var editor = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(editor)) return;
-        var livro = new Livro
+        using var connection = new SqlConnection(ConnectionString);
+        using var command = new SqlCommand
         {
-            Titulo = titulo,
-            Autor = autor,
-            Editor = editor
+            CommandText = "CreateLivro @Titulo, @Autor, @Editor",
+            CommandType = CommandType.Text,
+            Connection = connection
         };
-        LivrosDbContext.AddLivro(livro);
+        command.Parameters.AddWithValue("@Titulo", titulo);
+        command.Parameters.AddWithValue("@Autor", autor);
+        command.Parameters.AddWithValue("@Editor", editor);
+        connection.Open();
+        command.ExecuteNonQuery();
         Console.WriteLine("Livro criado com sucesso!");
     }
 
@@ -38,37 +75,65 @@ public static class LivrosManager
     {
         Console.Write("Id do livro: ");
         if (!int.TryParse(Console.ReadLine(), out var id)) return;
-        Console.Write("Estado (true/false): ");
-        LivrosDbContext.DeleteLivro(id);
-    }
-
-    public static void PrintLivros(IEnumerable<Livro> livros)
-    {
-        foreach (var livro in livros)
+        using var connection = new SqlConnection(ConnectionString);
+        using var command = new SqlCommand
         {
-            Console.WriteLine("Id: " + livro.Id);
-            Console.WriteLine("Título: " + livro.Titulo);
-            Console.WriteLine("Autor: " + livro.Autor);
-            Console.WriteLine("Editor: " + livro.Editor);
-            Console.WriteLine("Data de compra: " + livro.DataCompra);
-            Console.WriteLine("Emprestado? " + (livro.Estado ? "Sim" : "Não"));
-            Console.WriteLine();
-        }
+            CommandText = "DeleteLivro @Id",
+            CommandType = CommandType.Text,
+            Connection = connection
+        };
+        command.Parameters.AddWithValue("@Id", id);
+        connection.Open();
+        command.ExecuteNonQuery();
+        Console.WriteLine("Livro eliminado com sucesso!");
     }
 
     public static void RequisitarLivro()
     {
         Console.Write("Id do aluno: ");
-        if (!int.TryParse(Console.ReadLine(), out var idAluno)) return;
+        if (!int.TryParse(Console.ReadLine(), out var alunoId)) return;
         Console.Write("Id do livro: ");
-        if (!int.TryParse(Console.ReadLine(), out var idLivro)) return;
-        LivrosDbContext.RequisitarLivro(idAluno, idLivro);
+        if (!int.TryParse(Console.ReadLine(), out var livroId)) return;
+        using var connection = new SqlConnection(ConnectionString);
+        using var command = new SqlCommand
+        {
+            CommandText = "RequisitarLivro",
+            CommandType = CommandType.StoredProcedure,
+            Connection = connection
+        };
+        command.Parameters.AddWithValue("@AlunoId", alunoId);
+        command.Parameters.AddWithValue("@LivroId", livroId);
+        var returnParameter = new SqlParameter
+        {
+            Direction = ParameterDirection.ReturnValue
+        };
+        command.Parameters.Add(returnParameter);
+        connection.Open();
+        command.ExecuteNonQuery();
+        var result = (int)returnParameter.Value;
+        Console.WriteLine(result == 0 ? "Livro requisitado com sucesso!" : "O livro já se encontra requisitado!");
     }
 
     public static void DevolverLivro()
     {
         Console.Write("Id do livro: ");
-        if (!int.TryParse(Console.ReadLine(), out var idLivro)) return;
-        LivrosDbContext.DevolverLivro(idLivro);
+        if (!int.TryParse(Console.ReadLine(), out var livroId)) return;
+        using var connection = new SqlConnection(ConnectionString);
+        using var command = new SqlCommand
+        {
+            CommandText = "DevolverLivro",
+            CommandType = CommandType.StoredProcedure,
+            Connection = connection
+        };
+        command.Parameters.AddWithValue("@LivroId", livroId);
+        var returnParameter = new SqlParameter
+        {
+            Direction = ParameterDirection.ReturnValue
+        };
+        command.Parameters.Add(returnParameter);
+        connection.Open();
+        command.ExecuteNonQuery();
+        var result = (int)returnParameter.Value;
+        Console.WriteLine(result == 0 ? "Livro devolvido com sucesso!" : "O livro já se encontra devolvido!");
     }
 }

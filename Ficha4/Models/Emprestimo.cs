@@ -2,13 +2,11 @@
 
 public class Emprestimo
 {
-    public int Id { get; set; }
+    public int LivroId { get; init; }
 
-    public int LivroId { get; set; }
+    public int AlunoId { get; init; }
 
-    public int AlunoId { get; set; }
+    public DateTime DataRequisicao { get; init; }
 
-    public DateTime DataRequisicao { get; set; }
-
-    public DateTime DataEntrega { get; set; }
+    public DateTime DataEntrega { get; init; }
 }
