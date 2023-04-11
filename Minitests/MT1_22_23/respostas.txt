@@ -1,0 +1,5 @@
+Diogo Medeiros, 70633
+
+Pastas:
+1. Questao1.sikuli
+2. Questao2

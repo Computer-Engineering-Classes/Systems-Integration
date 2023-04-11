@@ -32,6 +32,12 @@ while (true)
             var casa = Convert.ToInt32(Console.ReadLine());
             Console.Write("Fora: ");
             var fora = Convert.ToInt32(Console.ReadLine());
+            if (casa == fora)
+            {
+                Console.WriteLine("Casa e Fora não podem ser iguais!");
+                break;
+            }
+
             CampeonatoManager.CreateJogo(ano, casa, fora);
             break;
         case "4":
