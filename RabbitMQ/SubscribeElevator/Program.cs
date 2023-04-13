@@ -6,13 +6,12 @@ var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
-channel.ExchangeDeclare("logs", ExchangeType.Fanout);
+const string exchangeName = "elevator-log";
+channel.ExchangeDeclare(exchangeName, ExchangeType.Fanout);
 
 // declare a server-named queue
 var queueName = channel.QueueDeclare().QueueName;
-channel.QueueBind(queueName,
-    "logs",
-    string.Empty);
+channel.QueueBind(queueName, exchangeName, string.Empty);
 
 Console.WriteLine(" [*] Waiting for logs.");
 
@@ -23,7 +22,8 @@ consumer.Received += (_, ea) =>
     var message = Encoding.UTF8.GetString(body);
     Console.WriteLine($" [x] {message}");
 };
-while (true)
-    channel.BasicConsume(queueName,
-        true,
-        consumer);
+// Start listening for incoming messages
+channel.BasicConsume(queueName, true, consumer);
+Console.WriteLine("Listening for incoming messages...");
+// Keep the program running, otherwise the consumer will be disposed
+while (true) Thread.Sleep(1000);
