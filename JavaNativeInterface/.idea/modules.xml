@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Calculator2JNI/Calculator2JNI.iml" filepath="$PROJECT_DIR$/Calculator2JNI/Calculator2JNI.iml" />
       <module fileurl="file://$PROJECT_DIR$/CalculatorJNI/CalculatorJNI.iml" filepath="$PROJECT_DIR$/CalculatorJNI/CalculatorJNI.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaNativeInterface.iml" filepath="$PROJECT_DIR$/JavaNativeInterface.iml" />
     </modules>
