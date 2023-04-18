@@ -92,3 +92,14 @@ CREATE PROCEDURE InsertLivro (@titulo varchar(50), @autor varchar(50), @editora 
 - Work Queues: A common way to parallelize computationally intensive tasks is to distribute the individual tasks among multiple workers. This is called the "work queue" pattern. [RabbitMQ](https://www.rabbitmq.com/tutorials/tutorial-two-csharp.html)
 
 - Publish/Subscribe: Publish/Subscribe is a messaging pattern where senders of messages, called publishers, do not program the messages to be sent directly to specific receivers, called subscribers. Instead, published messages are characterized into classes without knowledge of which subscribers, if any, there may be. Similarly, subscribers express interest in one or more classes and only receive messages that are of interest, without knowledge of which publishers, if any, there are. [RabbitMQ](https://www.rabbitmq.com/tutorials/tutorial-three-csharp.html)
+
+## Java Native Interface
+
+-- Criar Header File e Class File
+javac -h "*Diretoria da pasta*" HelloJNI.java
+
+-- Criar biblioteca .dll a partir do gcc
+gcc -I "C:\Users\diogo\.jdks\openjdk-20\include" -I "C:\Users\diogo\.jdks\openjdk-20\include\win32" -shared -o hello.dll HelloJNI.c
+
+-- Executar programa
+java -classpath "*Diretoria da pasta*" HelloJNI
