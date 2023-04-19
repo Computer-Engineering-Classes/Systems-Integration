@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Calculator2JNI/Calculator2JNI.iml" filepath="$PROJECT_DIR$/Calculator2JNI/Calculator2JNI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CalculatorJNI/CalculatorJNI.iml" filepath="$PROJECT_DIR$/CalculatorJNI/CalculatorJNI.iml" />
       <module fileurl="file://$PROJECT_DIR$/JNI.iml" filepath="$PROJECT_DIR$/JNI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RhythmCalculator/RhythmCalculator.iml" filepath="$PROJECT_DIR$/RhythmCalculator/RhythmCalculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShapeAreaJNI/ShapeAreaJNI.iml" filepath="$PROJECT_DIR$/ShapeAreaJNI/ShapeAreaJNI.iml" />
     </modules>
   </component>
 </project>
