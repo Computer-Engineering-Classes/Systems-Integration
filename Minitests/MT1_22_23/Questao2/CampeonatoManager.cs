@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
 using Questao2.Models;
+
 // ReSharper disable IdentifierTypo, StringLiteralTypo
 
 namespace Questao2;
@@ -15,8 +16,8 @@ public static class CampeonatoManager
         using var connection = new SqlConnection(ConnStr);
         using var command = new SqlCommand
         {
-            CommandText = "CreateCampeonato",
-            CommandType = CommandType.StoredProcedure,
+            CommandText = "CreateCampeonato @Ano",
+            CommandType = CommandType.Text,
             Connection = connection
         };
 
@@ -82,8 +83,8 @@ public static class CampeonatoManager
         using var connection = new SqlConnection(ConnStr);
         using var command = new SqlCommand
         {
-            CommandText = "CreateJogo",
-            CommandType = CommandType.StoredProcedure,
+            CommandText = "CreateJogo @Ano, @Casa, @Fora",
+            CommandType = CommandType.Text,
             Connection = connection
         };
         command.Parameters.AddWithValue("@Ano", ano);
@@ -125,8 +126,8 @@ public static class CampeonatoManager
         using var connection = new SqlConnection(ConnStr);
         using var command = new SqlCommand
         {
-            CommandText = "InsertResultado",
-            CommandType = CommandType.StoredProcedure,
+            CommandText = "InsertResultado @Ano, @Casa, @Fora, @Resultado",
+            CommandType = CommandType.Text,
             Connection = connection
         };
 
