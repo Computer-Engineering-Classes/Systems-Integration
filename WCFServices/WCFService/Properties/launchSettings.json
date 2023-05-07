@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "WcfService": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:7080;http://localhost:5288",
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:7080/Service.svc"
+    }
+  }
+}
