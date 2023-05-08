@@ -1,10 +1,9 @@
 Param(
-    [string]$Dir,
-    [string]$Name
+    [string]$Dir
 )
 
-$PROJ_DIR = $Dir
-$PROJ_NAME = $Name
+$PROJ_NAME = (Get-Item $Dir).BaseName
+$PROJ_DIR = (Join-Path $Dir "src")
 
 $OLDPWD = Get-Location
 Set-Location -Path $PROJ_DIR -ErrorAction Stop
@@ -12,7 +11,7 @@ Set-Location -Path $PROJ_DIR -ErrorAction Stop
 Write-Host "Creating header file..."
 javac -h . "$PROJ_NAME.java"
 
-$JDK_DIR = "C:\Users\diogo\.jdks\openjdk-20\include"
+$JDK_DIR = "$Env:JAVA_HOME\include"
 $DLL_NAME = $PROJ_NAME -replace "JNI", ""
 
 Write-Host "Compiling C file..."
