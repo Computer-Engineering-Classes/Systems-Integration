@@ -206,7 +206,6 @@ namespace ConsoleClient.Service
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
                 result.AllowCookies = true;
-                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.Transport;
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
@@ -216,7 +215,7 @@ namespace ConsoleClient.Service
         {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IService))
             {
-                return new System.ServiceModel.EndpointAddress("https://localhost:7005/Service.svc");
+                return new System.ServiceModel.EndpointAddress("http://localhost:5001/Service.svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
