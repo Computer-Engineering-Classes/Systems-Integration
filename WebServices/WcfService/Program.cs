@@ -4,7 +4,6 @@ builder.Services.AddServiceModelServices();
 builder.Services.AddServiceModelMetadata();
 builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>();
 
-
 var app = builder.Build();
 
 app.UseServiceModel(serviceBuilder =>
