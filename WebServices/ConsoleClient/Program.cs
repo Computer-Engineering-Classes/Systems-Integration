@@ -1,7 +1,6 @@
 ﻿using ConsoleClient;
-using ConsoleClient.Service;
 
-await using var client = new ServiceClient();
+var clientOps = new ClientOperations();
 
 while (true)
 {
@@ -10,24 +9,29 @@ while (true)
     Console.WriteLine("2. Arithmetics");
     Console.WriteLine("3. Temperature conversions");
     Console.WriteLine("4. Array/string operations");
-    Console.WriteLine("6. Exit");
+    Console.WriteLine("5. Exit");
     Console.Write("Enter your choice: ");
-    var choice = Console.ReadLine();
+    if (!int.TryParse(Console.ReadLine(), out var choice))
+    {
+        Console.WriteLine("Invalid choice");
+        continue;
+    }
+
     switch (choice)
     {
-        case "1":
-            Console.WriteLine(await client.HelloWorldAsync());
+        case 1:
+            Console.WriteLine(await clientOps.Client.HelloWorldAsync());
             break;
-        case "2":
-            await ClientOperations.Arithmetics(client);
+        case 2:
+            await clientOps.Arithmetics();
             break;
-        case "3":
-            await ClientOperations.Temperature(client);
+        case 3:
+            await clientOps.Temperature();
             break;
-        case "4":
-            await ClientOperations.Arrays(client);
+        case 4:
+            await clientOps.Arrays();
             break;
-        case "6":
+        case 5:
             return;
         default:
             Console.WriteLine("Invalid choice");
