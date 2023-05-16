@@ -1,18 +1,20 @@
 import webservice.ArrayOfint;
+import webservice.IService;
 import webservice.Service;
 
+import java.util.List;
 import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        var service = new Service().getBasicHttpBindingIService();
+        IService service = new Service().getBasicHttpBindingIService();
         System.out.println(service.add(1, 2));
         double celsius = 36.6;
         System.out.printf("%.2fºC = %.2fºF\n", celsius, service.celsiusToFahrenheit(celsius));
         System.out.println(service.reverse("Hello World!"));
-        var arrayOfint = new ArrayOfint();
-        var list = arrayOfint.getInt();
-        var random = new Random();
+        ArrayOfint arrayOfint = new ArrayOfint();
+        List<Integer> list = arrayOfint.getInt();
+        Random random = new Random();
         for (int i = 0; i < 10; i++) {
             list.add(random.nextInt(201) - 100);
         }
