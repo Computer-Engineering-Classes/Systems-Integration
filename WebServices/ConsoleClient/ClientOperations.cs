@@ -4,7 +4,12 @@ namespace ConsoleClient;
 
 public class ClientOperations
 {
-    public readonly ServiceClient Client = new();
+    private readonly ServiceClient _client = new();
+
+    public async Task HelloWorld()
+    {
+        Console.WriteLine(await _client.HelloWorldAsync());
+    }
 
     public async Task Arithmetics()
     {
@@ -14,22 +19,17 @@ public class ClientOperations
         Console.WriteLine("3. Multiply");
         Console.WriteLine("4. Divide");
         Console.Write("Enter your choice: ");
-        if (!int.TryParse(Console.ReadLine(), out var choice))
-        {
-            Console.WriteLine("Invalid choice");
-            return;
-        }
-
+        var choice = int.Parse(Console.ReadLine() ?? string.Empty);
         Console.Write("Enter first number: ");
         var a = int.Parse(Console.ReadLine() ?? string.Empty);
         Console.Write("Enter second number: ");
         var b = int.Parse(Console.ReadLine() ?? string.Empty);
         var result = choice switch
         {
-            1 => $"Add({a},{b}) = {await Client.AddAsync(a, b)}",
-            2 => $"Subtract({a},{b}) = {await Client.SubtractAsync(a, b)}",
-            3 => $"Multiply({a},{b}) = {await Client.MultiplyAsync(a, b)}",
-            4 => $"Divide({a},{b}) = {await Client.DivideAsync(a, b)}",
+            1 => $"Add({a},{b}) = {await _client.AddAsync(a, b)}",
+            2 => $"Subtract({a},{b}) = {await _client.SubtractAsync(a, b)}",
+            3 => $"Multiply({a},{b}) = {await _client.MultiplyAsync(a, b)}",
+            4 => $"Divide({a},{b}) = {await _client.DivideAsync(a, b)}",
             _ => "Invalid choice"
         };
         Console.WriteLine(result);
@@ -43,20 +43,15 @@ public class ClientOperations
         Console.WriteLine("3. Celsius to Kelvin");
         Console.WriteLine("4. Kelvin to Celsius");
         Console.Write("Enter your choice: ");
-        if (!int.TryParse(Console.ReadLine(), out var choice))
-        {
-            Console.WriteLine("Invalid choice");
-            return;
-        }
-
+        var choice = int.Parse(Console.ReadLine() ?? string.Empty);
         Console.Write("Enter temperature: ");
         var temperature = double.Parse(Console.ReadLine() ?? string.Empty);
         var result = choice switch
         {
-            1 => $"CelsiusToFahrenheit({temperature}) = {await Client.CelsiusToFahrenheitAsync(temperature)}",
-            2 => $"FahrenheitToCelsius({temperature}) = {await Client.FahrenheitToCelsiusAsync(temperature)}",
-            3 => $"CelsiusToKelvin({temperature}) = {await Client.CelsiusToKelvinAsync(temperature)}",
-            4 => $"KelvinToCelsius({temperature}) = {await Client.KelvinToCelsiusAsync(temperature)}",
+            1 => $"CelsiusToFahrenheit({temperature}) = {await _client.CelsiusToFahrenheitAsync(temperature)}",
+            2 => $"FahrenheitToCelsius({temperature}) = {await _client.FahrenheitToCelsiusAsync(temperature)}",
+            3 => $"CelsiusToKelvin({temperature}) = {await _client.CelsiusToKelvinAsync(temperature)}",
+            4 => $"KelvinToCelsius({temperature}) = {await _client.KelvinToCelsiusAsync(temperature)}",
             _ => "Invalid choice"
         };
         Console.WriteLine(result);
@@ -72,17 +67,12 @@ public class ClientOperations
         Console.WriteLine("5. Average");
         Console.WriteLine("6. Reverse string");
         Console.Write("Enter your choice: ");
-        if (!int.TryParse(Console.ReadLine(), out var choice))
-        {
-            Console.WriteLine("Invalid choice");
-            return;
-        }
-
+        var choice = int.Parse(Console.ReadLine() ?? string.Empty);
         if (choice == 6)
         {
             Console.Write("Enter string to reverse: ");
             var str = Console.ReadLine();
-            Console.WriteLine("Reverse({0}) = {1}", str, await Client.ReverseAsync(str));
+            Console.WriteLine("Reverse({0}) = {1}", str, await _client.ReverseAsync(str));
             return;
         }
 
@@ -91,22 +81,22 @@ public class ClientOperations
             .Split(' ')
             .Select(int.Parse)
             .ToArray() ?? Array.Empty<int>();
-        var numbersString = string.Join(",", numbers);
+        var numbersStr = string.Join(",", numbers);
         if (choice == 1)
         {
             Console.Write("Enter number to search: ");
             var number = int.Parse(Console.ReadLine() ?? string.Empty);
-            Console.WriteLine("GetIndex({0},{1}) = {2}", number, numbersString,
-                await Client.GetIndexAsync(numbers, number));
+            Console.WriteLine("GetIndex({0},{1}) = {2}", number, numbersStr,
+                await _client.GetIndexAsync(numbers, number));
             return;
         }
 
         var result = choice switch
         {
-            2 => $"Max({numbersString}) = {await Client.MaxAsync(numbers)}",
-            3 => $"Min({numbersString}) = {await Client.MinAsync(numbers)}",
-            4 => $"Sum({numbersString}) = {await Client.SumAsync(numbers)}",
-            5 => $"Average({numbersString}) = {await Client.AverageAsync(numbers)}",
+            2 => $"Max({numbersStr}) = {await _client.MaxAsync(numbers)}",
+            3 => $"Min({numbersStr}) = {await _client.MinAsync(numbers)}",
+            4 => $"Sum({numbersStr}) = {await _client.SumAsync(numbers)}",
+            5 => $"Average({numbersStr}) = {await _client.AverageAsync(numbers)}",
             _ => "Invalid choice"
         };
         Console.WriteLine(result);
