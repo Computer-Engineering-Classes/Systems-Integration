@@ -20,7 +20,7 @@ while (true)
     switch (choice)
     {
         case 1:
-            Console.WriteLine(await clientOps.Client.HelloWorldAsync());
+            await clientOps.HelloWorld();
             break;
         case 2:
             await clientOps.Arithmetics();
