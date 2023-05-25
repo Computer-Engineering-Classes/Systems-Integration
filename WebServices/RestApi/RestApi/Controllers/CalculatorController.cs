@@ -70,6 +70,18 @@ public class CalculatorController : ControllerBase
             : Ok(numbers[numbers.Length / 2]);
     }
 
+    [HttpPost("mode")]
+    public ActionResult<int> Mode([FromBody] int[] numbers)
+    {
+        if (numbers.Length == 0) return BadRequest("Cannot calculate mode of zero numbers");
+        var mode = numbers
+            .GroupBy(n => n)
+            .OrderByDescending(g => g.Count())
+            .Select(g => g.Key)
+            .First();
+        return Ok(mode);
+    }
+
     [HttpPost("max")]
     public ActionResult<int> Max([FromBody] int[] numbers)
     {
@@ -82,5 +94,13 @@ public class CalculatorController : ControllerBase
     {
         if (numbers.Length == 0) return BadRequest("Cannot calculate min of zero numbers");
         return Ok(numbers.Min());
+    }
+
+    [HttpPost("random")]
+    public ActionResult<int> Random([FromBody] int[] numbers)
+    {
+        if (numbers.Length == 0) return BadRequest("Cannot calculate random of zero numbers");
+        var random = new Random();
+        return Ok(numbers[random.Next(numbers.Length)]);
     }
 }
