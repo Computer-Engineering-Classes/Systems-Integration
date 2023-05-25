@@ -23,6 +23,11 @@ Console.CancelKeyPress += (_, _) =>
     handler.SendLeaveMessage();
     // Wait for the message to be sent
     Thread.Sleep(100);
+    // Close the channel and the connection
+    channel.Close();
+    connection.Close();
+    // Exit the application
+    Environment.Exit(0);
 };
 // Start sending messages
 while (true)
