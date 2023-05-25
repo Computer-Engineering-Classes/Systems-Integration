@@ -1,6 +1,6 @@
-import webservice.ArrayOfint;
-import webservice.IService;
-import webservice.Service;
+import ws.ArrayOfint;
+import ws.IService;
+import ws.Service;
 
 import java.util.List;
 import java.util.Random;
