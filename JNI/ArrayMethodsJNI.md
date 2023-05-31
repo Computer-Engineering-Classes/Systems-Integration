@@ -36,7 +36,7 @@ This JNI method retrieves a pointer to the characters of a Java string in the UT
 The function returns a pointer to the UTF-8 encoded characters of the Java string as a const char* value, which is a pointer to a block of memory that contains the characters in consecutive order. This pointer can be used to access and manipulate the characters of the string directly in native code.
 
 ```c
-(*env)->GetStringUTFChars(env,original, NULL);
+(*env)->GetStringUTFChars(env, original, NULL);
 ```
 
 ### String Length
@@ -44,5 +44,5 @@ The function returns a pointer to the UTF-8 encoded characters of the Java strin
 This JNI method retrieves the length of a Java string in terms of the number of UTF-8 encoded characters it contains. The function returns the length of the Java string in terms of the number of UTF-8 encoded characters it contains, as a jsize value, which is an integer type used in JNI to represent sizes of arrays and other collections.
 
 ```c
-(*env)->GetStringUTFLength(env,original);
+(*env)->GetStringUTFLength(env, original);
 ```
