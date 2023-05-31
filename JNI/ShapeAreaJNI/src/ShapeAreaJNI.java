@@ -27,6 +27,7 @@ public class ShapeAreaJNI {
                 System.out.println("Invalid shape.");
             }
         }
+        sc.close();
     }
 
     private native float rectangleArea(float length, float height);

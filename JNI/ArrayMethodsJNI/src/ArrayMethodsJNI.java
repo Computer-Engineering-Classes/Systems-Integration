@@ -18,6 +18,7 @@ public class ArrayMethodsJNI {
             }
             list.add(number);
         }
+        scanner.close();
         int[] array = list.stream().mapToInt(i -> i).toArray();
         int max = arrayMethodsJNI.max(array);
         System.out.println("Max: " + max);

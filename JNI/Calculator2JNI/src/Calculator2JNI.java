@@ -28,6 +28,7 @@ public class Calculator2JNI {
                 case 3 -> res = calculator.multiply(num1, num2);
                 case 4 -> res = calculator.divide(num1, num2);
                 case 99 -> {
+                    sc.close();
                     return;
                 }
                 default -> {
