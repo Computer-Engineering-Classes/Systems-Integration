@@ -22,6 +22,7 @@ public class CalculatorJNI {
             case 4 -> calculator.divide();
             default -> System.out.println("Invalid option.");
         }
+        sc.close();
     }
 
     private native void add();

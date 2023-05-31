@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "*.m": "matlab",
+        "arraymethodsjni.h": "c",
+        "stdlib.h": "c",
+        "jni.h": "c",
+        "jni_md.h": "c"
+    }
+}
