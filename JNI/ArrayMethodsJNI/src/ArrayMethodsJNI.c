@@ -3,8 +3,7 @@
 #include <string.h>
 
 JNIEXPORT jint JNICALL Java_ArrayMethodsJNI_max(JNIEnv *env, jobject obj, jintArray arr) {
-    jint *carr;
-    carr = (*env)->GetIntArrayElements(env, arr, NULL);
+    jint *carr = (*env)->GetIntArrayElements(env, arr, NULL);
     jint i, max = carr[0];
     jsize len = (*env)->GetArrayLength(env, arr);
     for (i = 0; i < len; i++) {
@@ -17,8 +16,7 @@ JNIEXPORT jint JNICALL Java_ArrayMethodsJNI_max(JNIEnv *env, jobject obj, jintAr
 }
 
 JNIEXPORT jint JNICALL Java_ArrayMethodsJNI_getIndex(JNIEnv *env, jobject obj, jintArray arr, jint index) {
-    jint *carr;
-    carr = (*env)->GetIntArrayElements(env, arr, NULL);
+    jint *carr = (*env)->GetIntArrayElements(env, arr, NULL);
     jint i = -1;
     jsize len = (*env)->GetArrayLength(env, arr);
     for (i = 0; i < len; i++) {
