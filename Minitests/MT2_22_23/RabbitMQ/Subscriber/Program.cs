@@ -9,6 +9,8 @@ var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
+channel.ExchangeDeclare("logs", ExchangeType.Fanout);
+
 var queueName = channel.QueueDeclare().QueueName;
 channel.QueueBind(queueName, "logs", string.Empty);
 
