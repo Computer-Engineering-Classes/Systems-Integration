@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsNewsPublisher", "SportsNewsPublisher\SportsNewsPublisher.csproj", "{EBF08DB2-654D-40B2-BDC5-FCAEDE60143D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportNewsSubscriber", "SportNewsSubscriber\SportNewsSubscriber.csproj", "{62ABB6D5-CEE8-49EC-8D98-9B62F02A76B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBF08DB2-654D-40B2-BDC5-FCAEDE60143D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBF08DB2-654D-40B2-BDC5-FCAEDE60143D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBF08DB2-654D-40B2-BDC5-FCAEDE60143D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBF08DB2-654D-40B2-BDC5-FCAEDE60143D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62ABB6D5-CEE8-49EC-8D98-9B62F02A76B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62ABB6D5-CEE8-49EC-8D98-9B62F02A76B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62ABB6D5-CEE8-49EC-8D98-9B62F02A76B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62ABB6D5-CEE8-49EC-8D98-9B62F02A76B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
