@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.m": "matlab",
+        "stdlib.h": "c",
+        "questao1jni.h": "c"
+    }
+}
