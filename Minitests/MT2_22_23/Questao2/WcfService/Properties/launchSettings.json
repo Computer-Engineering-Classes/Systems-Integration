@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "FrequenciaWS70633": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:7001;http://localhost:5131"
+    }
+  }
+}
