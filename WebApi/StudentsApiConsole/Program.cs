@@ -13,32 +13,25 @@ while (true)
     Console.Write("Enter your choice: ");
     var choice = Console.ReadLine();
     int id;
+    string response;
     string? name, color;
+    Student? student;
     switch (choice)
     {
         case "1":
-            Console.WriteLine(StudentApi.GetStudents());
+            var students = await StudentApi.GetStudents();
+            Console.WriteLine(students);
             break;
         case "2":
             Console.Write("Enter id: ");
-            if (int.TryParse(Console.ReadLine(), out id) == false) continue;
-            Console.WriteLine(StudentApi.GetStudent(id));
+            if (!int.TryParse(Console.ReadLine(), out id)) continue;
+            student = await StudentApi.GetStudent(id);
+            if (student == null)
+                Console.WriteLine("Student not found");
+            else
+                Console.WriteLine(student);
             break;
         case "3":
-            Console.Write("Enter name: ");
-            name = Console.ReadLine();
-            Console.Write("Enter color: ");
-            color = Console.ReadLine();
-            var student = new Student
-            {
-                Name = name,
-                Color = color
-            };
-            Console.WriteLine(StudentApi.AddStudent(student));
-            break;
-        case "4":
-            Console.Write("Enter id: ");
-            if (int.TryParse(Console.ReadLine(), out id) == false) continue;
             Console.Write("Enter name: ");
             name = Console.ReadLine();
             Console.Write("Enter color: ");
@@ -48,12 +41,29 @@ while (true)
                 Name = name,
                 Color = color
             };
-            Console.WriteLine(StudentApi.UpdateStudent(id, student));
+            response = await StudentApi.AddStudent(student);
+            Console.WriteLine(response);
+            break;
+        case "4":
+            Console.Write("Enter id: ");
+            if (!int.TryParse(Console.ReadLine(), out id)) continue;
+            Console.Write("Enter name: ");
+            name = Console.ReadLine();
+            Console.Write("Enter color: ");
+            color = Console.ReadLine();
+            student = new Student
+            {
+                Name = name,
+                Color = color
+            };
+            response = await StudentApi.UpdateStudent(id, student);
+            Console.WriteLine(response);
             break;
         case "5":
             Console.Write("Enter id: ");
-            if (int.TryParse(Console.ReadLine(), out id) == false) continue;
-            Console.WriteLine(StudentApi.DeleteStudent(id));
+            if (!int.TryParse(Console.ReadLine(), out id)) continue;
+            response = await StudentApi.DeleteStudent(id);
+            Console.WriteLine(response);
             break;
         case "6":
             return;

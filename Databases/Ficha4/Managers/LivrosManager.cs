@@ -14,12 +14,10 @@ public static class LivrosManager
         Console.Write("Id do livro (0 caso queira selecionar todos): ");
         if (!int.TryParse(Console.ReadLine(), out var id)) return;
         using var connection = new SqlConnection(ConnectionString);
-        using var command = new SqlCommand
-        {
-            CommandText = "GetLivros @Id",
-            CommandType = CommandType.Text,
-            Connection = connection
-        };
+        using var command = new SqlCommand();
+        command.CommandText = "GetLivros @Id";
+        command.CommandType = CommandType.Text;
+        command.Connection = connection;
         command.Parameters.AddWithValue("@Id", id);
         connection.Open();
         var reader = command.ExecuteReader();
@@ -57,12 +55,10 @@ public static class LivrosManager
         var editor = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(editor)) return;
         using var connection = new SqlConnection(ConnectionString);
-        using var command = new SqlCommand
-        {
-            CommandText = "CreateLivro @Titulo, @Autor, @Editor",
-            CommandType = CommandType.Text,
-            Connection = connection
-        };
+        using var command = new SqlCommand();
+        command.CommandText = "CreateLivro @Titulo, @Autor, @Editor";
+        command.CommandType = CommandType.Text;
+        command.Connection = connection;
         command.Parameters.AddWithValue("@Titulo", titulo);
         command.Parameters.AddWithValue("@Autor", autor);
         command.Parameters.AddWithValue("@Editor", editor);
@@ -76,12 +72,10 @@ public static class LivrosManager
         Console.Write("Id do livro: ");
         if (!int.TryParse(Console.ReadLine(), out var id)) return;
         using var connection = new SqlConnection(ConnectionString);
-        using var command = new SqlCommand
-        {
-            CommandText = "DeleteLivro @Id",
-            CommandType = CommandType.Text,
-            Connection = connection
-        };
+        using var command = new SqlCommand();
+        command.CommandText = "DeleteLivro @Id";
+        command.CommandType = CommandType.Text;
+        command.Connection = connection;
         command.Parameters.AddWithValue("@Id", id);
         connection.Open();
         command.ExecuteNonQuery();
@@ -95,12 +89,10 @@ public static class LivrosManager
         Console.Write("Id do livro: ");
         if (!int.TryParse(Console.ReadLine(), out var livroId)) return;
         using var connection = new SqlConnection(ConnectionString);
-        using var command = new SqlCommand
-        {
-            CommandText = "RequisitarLivro",
-            CommandType = CommandType.StoredProcedure,
-            Connection = connection
-        };
+        using var command = new SqlCommand();
+        command.CommandText = "RequisitarLivro";
+        command.CommandType = CommandType.StoredProcedure;
+        command.Connection = connection;
         command.Parameters.AddWithValue("@AlunoId", alunoId);
         command.Parameters.AddWithValue("@LivroId", livroId);
         var returnParameter = new SqlParameter
@@ -119,12 +111,10 @@ public static class LivrosManager
         Console.Write("Id do livro: ");
         if (!int.TryParse(Console.ReadLine(), out var livroId)) return;
         using var connection = new SqlConnection(ConnectionString);
-        using var command = new SqlCommand
-        {
-            CommandText = "DevolverLivro",
-            CommandType = CommandType.StoredProcedure,
-            Connection = connection
-        };
+        using var command = new SqlCommand();
+        command.CommandText = "DevolverLivro";
+        command.CommandType = CommandType.StoredProcedure;
+        command.Connection = connection;
         command.Parameters.AddWithValue("@LivroId", livroId);
         var returnParameter = new SqlParameter
         {

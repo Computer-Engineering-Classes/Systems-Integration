@@ -11,13 +11,13 @@ while (true)
     switch (choice)
     {
         case "1":
-            var countries = CountriesApi.GetCountries();
+            var countries = await CountriesApi.GetCountries();
             Console.WriteLine(countries);
             break;
         case "2":
             Console.Write("Enter name: ");
-            var name = Console.ReadLine();
-            var country = CountriesApi.GetCountry(name);
+            var name = Console.ReadLine() ?? string.Empty;
+            var country = await CountriesApi.GetCountry(name);
             if (country == null)
                 Console.WriteLine("Country not found");
             else
