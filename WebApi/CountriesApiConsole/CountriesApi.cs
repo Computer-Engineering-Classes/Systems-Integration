@@ -5,20 +5,20 @@ namespace CountriesApiConsole;
 
 public static class CountriesApi
 {
-    private static readonly HttpClient Client = new();
     private const string ApiUrl = "https://restcountries.com/v3.1";
-    
-    public static JsonArray? GetCountries()
+    private static readonly HttpClient Client = new();
+
+    public static async Task<JsonArray?> GetCountries()
     {
-        var response = Client.GetAsync(ApiUrl + "/all").Result;
-        var content = response.Content.ReadAsStringAsync().Result;
+        var response = await Client.GetAsync(ApiUrl + "/all");
+        var content = await response.Content.ReadAsStringAsync();
         return JsonSerializer.Deserialize<JsonArray>(content);
     }
-    
-    public static JsonNode? GetCountry(string? name)
+
+    public static async Task<JsonNode?> GetCountry(string name)
     {
-        var response = Client.GetAsync(ApiUrl + "/name/" + name).Result;
-        var content = response.Content.ReadAsStringAsync().Result;
+        var response = await Client.GetAsync(ApiUrl + "/name/" + name);
+        var content = await response.Content.ReadAsStringAsync();
         return content.Contains("\"status\":404") ? null : JsonSerializer.Deserialize<JsonArray>(content)?[0];
     }
 }

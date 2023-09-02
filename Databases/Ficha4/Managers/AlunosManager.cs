@@ -14,12 +14,10 @@ public static class AlunosManager
         Console.Write("Id do aluno (0 caso queira selecionar todos): ");
         if (!int.TryParse(Console.ReadLine(), out var id)) return;
         using var connection = new SqlConnection(ConnectionString);
-        using var command = new SqlCommand
-        {
-            CommandText = "GetAlunos @Id",
-            CommandType = CommandType.Text,
-            Connection = connection
-        };
+        using var command = new SqlCommand();
+        command.CommandText = "GetAlunos @Id";
+        command.CommandType = CommandType.Text;
+        command.Connection = connection;
         command.Parameters.AddWithValue("@Id", id);
 
         connection.Open();
@@ -53,12 +51,10 @@ public static class AlunosManager
         var endereco = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(endereco)) return;
         using var connection = new SqlConnection(ConnectionString);
-        using var command = new SqlCommand
-        {
-            CommandText = "CreateAluno @Nome, @Endereco",
-            CommandType = CommandType.Text,
-            Connection = connection
-        };
+        using var command = new SqlCommand();
+        command.CommandText = "CreateAluno @Nome, @Endereco";
+        command.CommandType = CommandType.Text;
+        command.Connection = connection;
         command.Parameters.AddWithValue("@Nome", nome);
         command.Parameters.AddWithValue("@Endereco", endereco);
 
@@ -84,12 +80,10 @@ public static class AlunosManager
             Endereco = endereco
         };
         using var connection = new SqlConnection(ConnectionString);
-        using var command = new SqlCommand
-        {
-            CommandText = "UpdateAluno @Id, @Nome, @Endereco",
-            CommandType = CommandType.Text,
-            Connection = connection
-        };
+        using var command = new SqlCommand();
+        command.CommandText = "UpdateAluno @Id, @Nome, @Endereco";
+        command.CommandType = CommandType.Text;
+        command.Connection = connection;
 
         command.Parameters.AddWithValue("@Id", aluno.Id);
         command.Parameters.AddWithValue("@Nome", aluno.Nome);
@@ -104,12 +98,10 @@ public static class AlunosManager
         Console.Write("Id do aluno: ");
         if (!int.TryParse(Console.ReadLine(), out var id)) return;
         using var connection = new SqlConnection(ConnectionString);
-        using var command = new SqlCommand
-        {
-            CommandText = "DeleteAluno @Id",
-            CommandType = CommandType.Text,
-            Connection = connection
-        };
+        using var command = new SqlCommand();
+        command.CommandText = "DeleteAluno @Id";
+        command.CommandType = CommandType.Text;
+        command.Connection = connection;
 
         command.Parameters.AddWithValue("@Id", id);
 
@@ -127,12 +119,10 @@ public static class AlunosManager
         var key = Console.ReadKey();
         var atrasados = key.Key == ConsoleKey.Y;
         using var connection = new SqlConnection(ConnectionString);
-        using var command = new SqlCommand
-        {
-            CommandText = "GetEmprestimos @AlunoId, @LivroId, @Atrasados",
-            CommandType = CommandType.Text,
-            Connection = connection
-        };
+        using var command = new SqlCommand();
+        command.CommandText = "GetEmprestimos @AlunoId, @LivroId, @Atrasados";
+        command.CommandType = CommandType.Text;
+        command.Connection = connection;
 
         command.Parameters.AddWithValue("@AlunoId", alunoId);
         command.Parameters.AddWithValue("@LivroId", livroId);

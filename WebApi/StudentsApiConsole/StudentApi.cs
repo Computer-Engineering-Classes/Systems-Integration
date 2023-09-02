@@ -4,41 +4,39 @@ namespace StudentsApi;
 
 public static class StudentApi
 {
-    private static readonly HttpClient Client = new();
     private const string ApiUrl = "http://cd9c-193-136-157-72.ngrok.io/api/values";
+    private static readonly HttpClient Client = new();
 
-    public static string GetStudents()
+    public static async Task<Student[]> GetStudents()
     {
-        var response = Client.GetAsync(ApiUrl).Result;
-        var content = response.Content.ReadAsStringAsync().Result;
+        var students = await Client.GetFromJsonAsync<Student[]>(ApiUrl);
+        return students ?? Array.Empty<Student>();
+    }
+
+    public static async Task<Student?> GetStudent(int id)
+    {
+        var student = await Client.GetFromJsonAsync<Student>(ApiUrl + "/" + id);
+        return student;
+    }
+
+    public static async Task<string> AddStudent(Student student)
+    {
+        var response = await Client.PostAsJsonAsync(ApiUrl, student);
+        var content = await response.Content.ReadAsStringAsync();
         return content;
     }
-    
-    public static string GetStudent(int id)
+
+    public static async Task<string> UpdateStudent(int id, Student student)
     {
-        var response = Client.GetAsync(ApiUrl + "/" + id).Result;
-        var content = response.Content.ReadAsStringAsync().Result;
+        var response = await Client.PutAsJsonAsync(ApiUrl + "/" + id, student);
+        var content = await response.Content.ReadAsStringAsync();
         return content;
     }
-    
-    public static string AddStudent(Student student)
+
+    public static async Task<string> DeleteStudent(int id)
     {
-        var response = Client.PostAsJsonAsync(ApiUrl, student).Result;
-        var content = response.Content.ReadAsStringAsync().Result;
-        return content;
-    }
-    
-    public static string UpdateStudent(int id, Student student)
-    {
-        var response = Client.PutAsJsonAsync(ApiUrl + "/" + id, student).Result;
-        var content = response.Content.ReadAsStringAsync().Result;
-        return content;
-    }
-    
-    public static string DeleteStudent(int id)
-    {
-        var response = Client.DeleteAsync(ApiUrl + "/" + id).Result;
-        var content = response.Content.ReadAsStringAsync().Result;
+        var response = await Client.DeleteAsync(ApiUrl + "/" + id);
+        var content = await response.Content.ReadAsStringAsync();
         return content;
     }
 }
